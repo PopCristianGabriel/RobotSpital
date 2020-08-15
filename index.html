@@ -1,0 +1,192 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src = "https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="jquery.js"></script>
+<style>
+.arrow-right{
+  border: solid black;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow-left{
+  border: solid black;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow-up{
+  border: solid black;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow-down{
+  border: solid black;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  position: absolute;
+  left: 900px;
+  top: 500px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  position: absolute;
+  left: 500px;
+  top: 500px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  position: absolute;
+  left: 700px;
+  top: 300px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  left: 700px;
+  top: 700px;
+}
+</style>
+
+
+
+
+</head>
+<body>
+
+<h2>CSS Arrows</h2>
+
+<i1 class="arrow-right right"></i1>
+ <i2 class="arrow-left left"></i2>
+ <i3 class="arrow-up up"></i3>
+ <i4 class="arrow-down down"></i4>
+
+
+
+
+
+
+<script>
+var ws
+function connect_to_server(data){
+
+ if ("WebSocket" in window) {
+               alert("WebSocket is supported by your Browser!");
+               
+               // Let us open a web socket
+                ws = new WebSocket("ws://localhost:8765");
+				
+               ws.onopen = function() {
+                  
+                 send_data_to_server(data);
+                  alert("Connection Established");
+               };
+			    
+            } else {
+              
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+			 
+}
+
+function send_data_to_server(data){
+		ws.send(data);
+}
+
+
+
+</script>
+
+<button onclick="connect_to_server()">Connect to Robot</button>
+
+
+
+
+
+<script>
+
+$(document).keyup(function(event){
+var keycode = (event.keyCode ? event.keyCode : event.which);
+console.log(keycode);
+
+/*up*/
+if(keycode == '87'){
+ $("i3").css("border", "solid black");	
+ connect_to_server("The robot should move forward")
+}
+
+/*right*/
+if(keycode == '68'){
+ $("i1").css("border", "solid black");	
+ connect_to_server("The robot should move right")
+}
+
+/*down*/
+if(keycode == '83'){
+ $("i4").css("border", "solid black");	
+  connect_to_server("The robot should move backwards")
+}
+
+/*left*/
+if(keycode == '65'){
+ $("i2").css("border", "solid black");	
+  connect_to_server("The robot should move left")
+}
+
+
+});
+$(document).keypress(function(event){
+
+
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+	
+	
+	
+    if(keycode == '97'){
+        $("i2").css("border", "solid red");	
+		 
+		
+    }
+	if(keycode == '119'){
+        $("i3").css("border", "solid red");	
+		  
+    }
+	if(keycode == '100'){
+        //alert('You pressed  d key in somewhere');   
+		$("i1").css("border", "solid red");	
+			
+    }
+	
+	
+	if(keycode == '115'){
+        $("i4").css("border", "solid red");	
+		 
+    }
+
+});
+
+
+
+
+</script>
+
+</body>
+</html>
