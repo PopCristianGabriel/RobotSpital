@@ -1,72 +1,5 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src = "https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-<script src="jquery.js"></script>
-<style>
-.arrow-right{
-  border: solid black;
-  border-width: 0 10px 10px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.arrow-left{
-  border: solid black;
-  border-width: 0 10px 10px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.arrow-up{
-  border: solid black;
-  border-width: 0 10px 10px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.arrow-down{
-  border: solid black;
-  border-width: 0 10px 10px 0;
-  display: inline-block;
-  padding: 3px;
-}
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  position: absolute;
-  left: 900px;
-  top: 500px;
-}
-
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-  position: absolute;
-  left: 500px;
-  top: 500px;
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  position: absolute;
-  left: 700px;
-  top: 300px;
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  position: absolute;
-  left: 700px;
-  top: 700px;
-}
-</style>
-
-
-
 
 </head>
 <body>
@@ -88,7 +21,7 @@ var ws
 function connect_to_server(data){
 
  if ("WebSocket" in window) {
-               alert("WebSocket is supported by your Browser!");
+               //alert("WebSocket is supported by your Browser!");
                
                // Let us open a web socket
                 ws = new WebSocket("ws://localhost:8765");
@@ -96,13 +29,13 @@ function connect_to_server(data){
                ws.onopen = function() {
                   
                  send_data_to_server(data);
-                  alert("Connection Established");
+                  //alert("Connection Established");
                };
 			    
             } else {
               
                // The browser doesn't support WebSocket
-               alert("WebSocket NOT supported by your Browser!");
+               //alert("WebSocket NOT supported by your Browser!");
             }
 			 
 }
