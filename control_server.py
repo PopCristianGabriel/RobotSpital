@@ -1,9 +1,11 @@
 import asyncio
-import websockets
 import serial
+import sys
+sys.path.append('/home/pi/.local/lib/python3.7/site-packages')
+import websockets
 
 
-arduino = serial.Serial(port='ttyACM0', baudrate=9600)
+arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600)
 
 
 def set_power(left, right):
@@ -20,7 +22,7 @@ def set_power(left, right):
     else:
         direction_right = '-'
 
-    command = direction_left + str(chr(left)) + direction_right + str(chr(right)) + '\n'
+    command = direction_left + str(chr(abs(left))) + direction_right + str(chr(abs(right))) + '\n'
 
     arduino.write(command.encode())
 
