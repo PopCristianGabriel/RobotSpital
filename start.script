@@ -2,5 +2,6 @@
 
 #Start script
 
-python3 webstreaming_server.py &
-python3 control_server.py
+sudo python3 webstreaming_server.py &
+sudo python3 control_server.py
+sudo killall python3
