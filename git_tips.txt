@@ -1,0 +1,10 @@
+git clone https://github.com/PopCristianGabriel/RobotSpital.git
+git push
+git pull
+git commit -m "mesaj"
+
+foldere diferite branch-uri:
+git worktree PATHTOFOLDER BRANCHNAME
+
+schimbare branch:
+git checkout BRANCHNAME
