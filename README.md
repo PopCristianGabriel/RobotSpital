@@ -4,6 +4,6 @@ Pentru rulare server:
 
 
 
-Accesare din broser:
+Accesare din browser:
 
 192.168.0.125:80
