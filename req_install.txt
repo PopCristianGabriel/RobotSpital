@@ -1,0 +1,8 @@
+run pip with python3 -m pip instead of pip ..
+
+python3 -m pip --version
+pip install --upgrade pip
+pip(3) install "picamera[array]"
+pip(3) install opencv-python
+(pip install opencv-contrib-python)
+pip(3) install Flask

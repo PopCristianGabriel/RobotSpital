@@ -81,8 +81,14 @@
 
 </head>
 <body>
-
-	<img src="stream.mjpg" width="640" height"480">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8  offset-lg-2">
+            <h3 class="mt-5">Live Streaming</h3>
+            <img src="{{ url_for('video_feed') }}" width="100%">
+        </div>
+    </div>
+</div>
 
 <i1 class="arrow-right right"></i1>
  <i2 class="arrow-left left"></i2>
@@ -102,7 +108,7 @@ function connect_to_server(data){
                //alert("WebSocket is supported by your Browser!");
                
                // Let us open a web socket
-                ws = new WebSocket("ws://192.168.0.125:8765");
+                ws = new WebSocket("ws://localhost:8765");
                 
                ws.onopen = function() {
                   
@@ -160,11 +166,6 @@ if(keycode == '83'){
 if(keycode == '65'){
  $("i2").css("border", "solid black");  
   connect_to_server("The robot should move left")
-}
-
-/*stop*/
-if(keycode =='66'){
-	connnect_to_server("Stop")
 }
 
 
