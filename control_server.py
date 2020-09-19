@@ -1,43 +1,53 @@
 import asyncio
 import serial
 import sys
+import time
 sys.path.append('/home/pi/.local/lib/python3.7/site-packages')
 import websockets
 
 
 arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600)
 
+#while (True):
+#    arduino.write(chr(14).encode(encoding='ascii'))
+#    arduino.write(chr(99).encode(encoding='ascii'))
+#    time.sleep(3)
 
 def set_power(left, right):
     left = int(left)
     right = int(right)
 
     if left >= 0:
-        direction_left = '+'
+        direction_left = 1
     else:
-        direction_left = '-'
+        direction_left = 2
 
     if right >= 0:
-        direction_right = '+'
+        direction_right = 1
     else:
-        direction_right = '-'
-
-    command = direction_left + str(chr(abs(left))) + direction_right + str(chr(abs(right))) + '\n'
-
-    arduino.write(command.encode())
+        direction_right = 2
+    #command = direction_left + str(chr(abs(left))) + direction_right + str(chr(abs(right))) + 'x'
+    ############################################
+    arduino.write(chr(direction_left).encode(encoding='ascii'))
+    arduino.write(chr(abs(left)).encode(encoding='ascii'))
+    arduino.write(chr(direction_right).encode(encoding='ascii'))
+    arduino.write(chr(abs(right)).encode(encoding='ascii'))
+    ############################################
+    #print(command)
+    #arduino.write(command.encode())
 
 
 async def hello(websocket, path):
     name = await websocket.recv()
     print(name)
     if name == "The robot should move forward":
-        set_power(200, 200)
+        set_power(100, 100)
     elif name == "The robot should move right":
-        set_power(0, 200)
+        set_power(0, 100)
     elif name == "The robot should move backwards":
-        set_power(-200, -200)
+        set_power(-100, -100)
     elif name == "The robot should move left":
-        set_power(200, 0)
+        set_power(100, 0)
     elif name == "Stop":
         set_power(0,0)
 
