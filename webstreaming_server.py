@@ -9,8 +9,9 @@ import socketserver
 from threading import Condition
 from http import server
 
-file = open("index.html", "r")
-PAGE = file.read()
+#file = open("index.html", "r")
+#PAGE = file.read()
+#content = PAGE.encode('utf-8')
 
 class StreamingOutput(object):
     def __init__(self):
@@ -33,15 +34,15 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.send_response(301)
-            self.send_header('Location', '/index.html')
+            self.send_header('Location', '/stream.mjpg')
             self.end_headers()
-        elif self.path == '/index.html':
-            content = PAGE.encode('utf-8')
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html')
-            self.send_header('Content-Length', len(content))
-            self.end_headers()
-            self.wfile.write(content)
+        #elif self.path == '/index.html':
+        #    #content = PAGE.encode('utf-8')
+        #    self.send_response(200)
+        #    self.send_header('Content-Type', 'text/html')
+        #    self.send_header('Content-Length', len(content))
+        #    self.end_headers()
+        #    self.wfile.write(content)
         elif self.path == '/stream.mjpg':
             self.send_response(200)
             self.send_header('Age', 0)
@@ -78,7 +79,7 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     #camera.rotation = 90
     camera.start_recording(output, format='mjpeg')
     try:
-        address = ('192.168.0.125', 80)
+        address = ('192.168.0.125', 81)
         server = StreamingServer(address, StreamingHandler)
         server.serve_forever()
     finally:

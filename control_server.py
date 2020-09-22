@@ -38,18 +38,22 @@ def set_power(left, right):
 
 
 async def hello(websocket, path):
-    name = await websocket.recv()
-    print(name)
-    if name == "The robot should move forward":
-        set_power(100, 100)
-    elif name == "The robot should move right":
-        set_power(0, 100)
-    elif name == "The robot should move backwards":
-        set_power(-100, -100)
-    elif name == "The robot should move left":
-        set_power(100, 0)
-    elif name == "Stop":
-        set_power(0,0)
+    while (True):
+        name = await websocket.recv()
+        print(name)
+        if name == "front":
+            set_power(100, 100)
+            set_power(100, 100)
+        elif name == "right":
+            set_power(-100, 100)
+        elif name == "back":
+            set_power(-100, -100)
+            set_power(-100, -100)
+        elif name == "left":
+            set_power(100, -100)
+        elif name == "stop":
+            set_power(0,0)
+            set_power(0,0)
 
 
 start_server = websockets.serve(hello, "192.168.0.125", 8765)
