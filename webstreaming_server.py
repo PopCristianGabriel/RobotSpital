@@ -9,7 +9,9 @@ import socketserver
 from threading import Condition
 from http import server
 
-file = open("index.html", "r")
+path = "/build/index.html"
+
+file = open(path, "r")
 PAGE = file.read()
 
 class StreamingOutput(object):
@@ -33,9 +35,9 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.send_response(301)
-            self.send_header('Location', '/index.html')
+            self.send_header('Location', path)
             self.end_headers()
-        elif self.path == '/index.html':
+        elif self.path == path:
             content = PAGE.encode('utf-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
