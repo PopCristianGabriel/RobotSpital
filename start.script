@@ -4,5 +4,5 @@
 
 sudo service apache2 start
 sudo python3 webstreaming_server.py &
-sudo python3 control_server.py
+python3 server_flask.py
 sudo killall python3
