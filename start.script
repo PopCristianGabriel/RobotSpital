@@ -4,5 +4,9 @@
 
 sudo service apache2 start
 sudo python3 webstreaming_server.py &
-python3 server_flask.py
+#while true ;
+#do
+	node nodejs_websocket_server.js
+#	sudo fuser -k 8765/tcp
+#done
 sudo killall python3

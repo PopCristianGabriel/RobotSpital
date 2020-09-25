@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+import multiprocessing
 import asyncio
 import serial
 import sys
@@ -51,7 +52,14 @@ def handle_my_custom_event(json):
     elif name == "stop":
         set_power(0,0)
 
+#def foo():
+#    socketio.run(app, host='192.168.0.125', port=8765)
 
 if __name__ == '__main__':
     socketio.run(app, host='192.168.0.125', port=8765)
-
+    #while True:
+    #    p = multiprocessing.Process(target=foo, name="Foo")
+    #    p.start()
+    #    time.sleep(30)
+    #    p.terminate()
+    #    p.join()
