@@ -25,3 +25,8 @@ build site pt export pe raspberry:
 
 locatie site apache pe raspberry:
 	mv -r build /var/www/html/
+
+
+instalare material ui si chestii de la el:
+npm install @material-ui/core
+npm install @material-ui/icons
