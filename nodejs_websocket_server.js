@@ -5,7 +5,7 @@ const port = new SerialPort('/dev/ttyACM0', { baudRate: 9600 });
 const wss = new WebSocket.Server({ ip:'192.168.0.125', port: 8765 });
  
 function set_power(left, right) {
-	var direction_left, direction_right;
+	/*var direction_left, direction_right;
 	if (left >= 0)
 		direction_left = 1;
 	else
@@ -19,7 +19,14 @@ function set_power(left, right) {
 	port.write(String.fromCharCode(direction_left));
 	port.write(String.fromCharCode(Math.abs(left)));
 	port.write(String.fromCharCode(direction_right));
-	port.write(String.fromCharCode(Math.abs(right)));
+	port.write(String.fromCharCode(Math.abs(right)));*/
+	//{"command": "set_motor_power", "left_motor": 100, "right_motor": 100}
+	var data = {}
+	data["command"] = "set_motor_power";
+	data["left_motor"] = left;
+	data["right_motor"] = right;
+	port.write(JSON.stringify(data));
+
 }
 
 wss.on('connection', function connection(ws) {
